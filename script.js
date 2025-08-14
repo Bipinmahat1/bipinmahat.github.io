@@ -211,67 +211,98 @@
   }
   initCursor();
 
-
-  (function enableTouchCursor() {
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  if (!isTouch) return;
+  if (isTouch) {
+    const dot = document.createElement('div');
+    dot.className = 'touch-dot';
+    document.body.appendChild(dot);
 
-  const dot = document.createElement('div');
-  dot.className = 'touch-dot';
-  document.body.appendChild(dot);
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+    let rafId = null;
 
-  let targetX = 0, targetY = 0, curX = 0, curY = 0;
-  let rafId = null;
-
-  function animate() {
-    curX += (targetX - curX) * 0.22;
-    curY += (targetY - curY) * 0.22;
-    dot.style.transform = `translate(${curX - 0}px, ${curY - 0}px) translate(-50%, -50%)`;
+    function animate() {
+      curX += (targetX - curX) * 0.22;
+      curY += (targetY - curY) * 0.22;
+      dot.style.transform = `translate(${curX}px, ${curY}px) translate(-50%, -50%)`;
+      rafId = requestAnimationFrame(animate);
+    }
     rafId = requestAnimationFrame(animate);
+
+    function ripple(x, y) {
+      const r = document.createElement('div');
+      r.className = 'touch-ripple';
+      r.style.left = x + 'px';
+      r.style.top  = y + 'px';
+      document.body.appendChild(r);
+      r.addEventListener('animationend', () => r.remove());
+    }
+
+    let ticking = false;
+    function onMove(e) {
+      const t = e.touches ? e.touches[0] : e;
+      if (!t || ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        targetX = t.clientX;
+        targetY = t.clientY;
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'touch') return;
+      targetX = e.clientX; targetY = e.clientY;
+      dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%) scale(0.92)`;
+      ripple(e.clientX, e.clientY);
+    }, { passive: true });
+
+    window.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'touch') return;
+      onMove(e);
+    }, { passive: true });
+
+    window.addEventListener('pointerup', (e) => {
+      if (e.pointerType !== 'touch') return;
+      dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%) scale(1)`;
+    }, { passive: true });
+
+    window.addEventListener('pagehide', () => cancelAnimationFrame(rafId));
   }
-  rafId = requestAnimationFrame(animate);
 
-  function ripple(x, y) {
-    const r = document.createElement('div');
-    r.className = 'touch-ripple';
-    r.style.left = x + 'px';
-    r.style.top  = y + 'px';
-    document.body.appendChild(r);
-    r.addEventListener('animationend', () => r.remove());
-  }
+  const form = document.getElementById('contact-form');
+const resp = document.getElementById('form-response');
+const TO = 'bipinmahat643@gmail.com';
 
-  let ticking = false;
-  function onMove(e) {
-    const t = e.touches ? e.touches[0] : e;
-    if (!t) return;
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      targetX = t.clientX;
-      targetY = t.clientY;
-      ticking = false;
-    });
-  }
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const from = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-  window.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'touch') return;
-    targetX = e.clientX; targetY = e.clientY;
-    dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%) scale(0.92)`;
-    ripple(e.clientX, e.clientY);
-  }, { passive: true });
+    const body = `Name: ${name}\nEmail: ${from}\n\n${message}`;
 
-  window.addEventListener('pointermove', (e) => {
-    if (e.pointerType !== 'touch') return;
-    onMove(e);
-  }, { passive: true });
+    const mailto = `mailto:${TO}?subject=${encodeURIComponent(`[Portfolio] ${subject}`)}&body=${encodeURIComponent(body)}`;
+    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(TO)}&su=${encodeURIComponent(`[Portfolio] ${subject}`)}&body=${encodeURIComponent(body)}`;
 
-  window.addEventListener('pointerup',   (e) => {
-    if (e.pointerType !== 'touch') return;
-    dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%) scale(1)`;
-  }, { passive: true });
+    let fallback = setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        window.open(gmail, '_blank', 'noopener');
+      }
+    }, 700);
 
-  // clean up on page hide
-  window.addEventListener('pagehide', () => cancelAnimationFrame(rafId));
-})();
+    try { window.location.href = mailto; } catch (_) {}
 
+    if (resp) {
+      resp.hidden = false;
+      resp.textContent = 'Opening your email app…';
+      setTimeout(() => (resp.hidden = true), 4000);
+    }
+
+    form.reset();
+
+    window.addEventListener('pagehide', () => clearTimeout(fallback), { once: true });
+  });
+}
 })();

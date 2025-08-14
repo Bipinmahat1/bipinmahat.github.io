@@ -210,4 +210,68 @@
     document.addEventListener('mousedown', click);
   }
   initCursor();
+
+
+  (function enableTouchCursor() {
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch) return;
+
+  const dot = document.createElement('div');
+  dot.className = 'touch-dot';
+  document.body.appendChild(dot);
+
+  let targetX = 0, targetY = 0, curX = 0, curY = 0;
+  let rafId = null;
+
+  function animate() {
+    curX += (targetX - curX) * 0.22;
+    curY += (targetY - curY) * 0.22;
+    dot.style.transform = `translate(${curX - 0}px, ${curY - 0}px) translate(-50%, -50%)`;
+    rafId = requestAnimationFrame(animate);
+  }
+  rafId = requestAnimationFrame(animate);
+
+  function ripple(x, y) {
+    const r = document.createElement('div');
+    r.className = 'touch-ripple';
+    r.style.left = x + 'px';
+    r.style.top  = y + 'px';
+    document.body.appendChild(r);
+    r.addEventListener('animationend', () => r.remove());
+  }
+
+  let ticking = false;
+  function onMove(e) {
+    const t = e.touches ? e.touches[0] : e;
+    if (!t) return;
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      targetX = t.clientX;
+      targetY = t.clientY;
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'touch') return;
+    targetX = e.clientX; targetY = e.clientY;
+    dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%) scale(0.92)`;
+    ripple(e.clientX, e.clientY);
+  }, { passive: true });
+
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'touch') return;
+    onMove(e);
+  }, { passive: true });
+
+  window.addEventListener('pointerup',   (e) => {
+    if (e.pointerType !== 'touch') return;
+    dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%) scale(1)`;
+  }, { passive: true });
+
+  // clean up on page hide
+  window.addEventListener('pagehide', () => cancelAnimationFrame(rafId));
+})();
+
 })();

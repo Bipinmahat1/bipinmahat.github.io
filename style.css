@@ -601,3 +601,48 @@ a:hover {
     max-width: 350px;
   }
 }
+
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+.touch-dot {
+  position: fixed;
+  left: 0; top: 0;
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: rgba(99, 179, 237, 0.95); /* var(--primary) if you prefer */
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: screen;
+  transition: transform .12s ease;
+}
+
+.touch-ripple {
+  position: fixed;
+  left: 0; top: 0;
+  width: 12px; height: 12px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(
+    circle,
+    rgba(167, 139, 250, 0.35) 0%,
+    rgba(167, 139, 250, 0.15) 50%,
+    rgba(167, 139, 250, 0.00) 70%
+  );
+  transform: translate(-50%, -50%) scale(1);
+  animation: ripple-pop .6s ease-out forwards;
+}
+
+@keyframes ripple-pop {
+  to {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .touch-dot, .touch-ripple { animation: none; transition: none; }
+}

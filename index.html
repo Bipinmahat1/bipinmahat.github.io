@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bipin Mahat – Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo">Bipin&nbsp;Mahat</a>
+      <nav id="main-nav" class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="assets/resume/My resume .pdf" target="_blank" class="nav-link">Resume</a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section hero">
+      <div class="container hero-container">
+        <div class="hero-text">
+          <h1>Hi, I'm <span class="gradient-text">Bipin&nbsp;Mahat</span></h1>
+          <p class="subtitle">Software&nbsp;Developer&nbsp;&&nbsp;AI&nbsp;Enthusiast</p>
+          <p class="description">
+            I build interactive, accessible web experiences and enjoy exploring
+            emerging technologies.  I'm a Computer Engineering Technology
+            graduate from Seneca College and a lifelong learner.  When I'm not
+            coding you'll find me playing soccer or experimenting with
+            photography.
+          </p>
+          <div class="hero-actions">
+            <a href="https://github.com/bipinmahat1" target="_blank" class="btn primary">View GitHub</a>
+            <a href="#contact" class="btn secondary">Get In Touch</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="assets/images/headshot.png" alt="Portrait of Bipin Mahat">
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="container about-container">
+        <div class="about-text">
+          <h2 class="section-title">About Me</h2>
+          <p>
+            I'm a passionate software developer based in  halifax, Nova scotia.  My
+            background in Computer Engineering Technology has given me a strong
+            foundation in both hardware and software, and I've since focused on
+            building full‑stack web applications and exploring artificial
+            intelligence.  I love to collaborate, solve problems and turn ideas
+            into reality.
+          </p>
+          <p>
+            Away from the keyboard, I enjoy playing soccer, taking photos and
+            travelling.  These hobbies keep me balanced and continually
+            inspire my creativity.  I also love diving into open source
+            communities and experimenting with Linux distributions  tinkering
+            with kernels and configs keeps my curiosity sharp.
+          </p>
+          <p>
+            When I'm not coding, you might find me exploring the latest in ethical hacking, experimenting with Raspberry Pi projects, or diving deep into AI/ML technologies.
+          </p>
+        </div>
+        <div class="about-image">
+          <img src="assets/images/about.jpg" alt="Camera and laptop">
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <h3>JavaScript</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="90"></div>
+            </div>
+            <span class="skill-level-text">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <h3>Python</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="90"></div>
+            </div>
+            <span class="skill-level-text">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <h3>React</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="85"></div>
+            </div>
+            <span class="skill-level-text">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <h3>Node.js</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="70"></div>
+            </div>
+            <span class="skill-level-text">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <h3>MongoDB</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="70"></div>
+            </div>
+            <span class="skill-level-text">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <h3>AI/ML</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="70"></div>
+            </div>
+            <span class="skill-level-text">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <h3>C++</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="65"></div>
+            </div>
+            <span class="skill-level-text">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <h3>C#</h3>
+            <div class="skill-bar">
+              <div class="skill-level" data-level="65"></div>
+            </div>
+            <span class="skill-level-text">Intermediate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <article class="project-card">
+            <img src="assets/images/date.jpeg" alt="Nepadate project screenshot">
+            <div class="project-content">
+              <h3 class="project-title">Nepadate</h3>
+              <p class="project-description">A fully working web‑based dating platform with user profiles, matching, chat
+              and preference filtering.</p>
+              <p class="project-tech">HTML · CSS · JavaScript</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="assets/images/football.jpeg" alt="Automatic Goalkeeper project screenshot">
+            <div class="project-content">
+              <h3 class="project-title">Automatic Goalkeeper</h3>
+              <p class="project-description">Raspberry&nbsp;Pi&nbsp;&&nbsp;OpenCV based servo driven goalkeeping robot that tracks a ball in real time.</p>
+              <p class="project-tech">Python · OpenCV · Raspberry&nbsp;Pi</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="assets/images/jobbot.jpeg" alt="AI Job Bot project screenshot">
+            <div class="project-content">
+              <h3 class="project-title">AI‑Powered Job&nbsp;Bot</h3>
+              <p class="project-description">An automation that uses n8n and the OpenAI API to apply to IT jobs on LinkedIn.</p>
+              <p class="project-tech">n8n · OpenAI&nbsp;API · Automation</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="assets/images/clothing.jpeg" alt="MountEverestClothing project screenshot">
+            <div class="project-content">
+              <h3 class="project-title">Mount Everest Clothing</h3>
+              <p class="project-description">A full‑stack e‑commerce platform built with the MERN stack.</p>
+              <p class="project-tech">React · Node.js · MongoDB · Express</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="assets/images/photographer.jpeg" alt="Photographer portfolio project screenshot">
+            <div class="project-content">
+              <h3 class="project-title">Photographer Portfolio</h3>
+              <p class="project-description">A professional portfolio website created for photographer Siddhant&nbsp;Rai.</p>
+              <p class="project-tech">React · CSS · Responsive&nbsp;Design</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="assets/images/pet.jpeg" alt="Pet adoption app project screenshot">
+            <div class="project-content">
+              <h3 class="project-title">Pet Adoption App</h3>
+              <p class="project-description">Originally a PHP application that connects pets with loving homes.</p>
+              <p class="project-tech">PHP · MySQL · HTML · CSS</p>
+            </div>
+          </article>
+        </div>
+        <div class="projects-more">
+          <a href="https://github.com/bipinmahat1" target="_blank" class="btn secondary">View All Projects on GitHub</a>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="contact-intro">Have a project in mind or want to discuss opportunities?  I'd love to hear from you!</p>
+        <form id="contact-form" class="contact-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+            <div class="form-group full">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+            </div>
+            <div class="form-group full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project or idea..." required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn primary form-submit">Send Message</button>
+        </form>
+        <div id="form-response" class="form-response" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <h3 class="footer-name">Bipin&nbsp;Mahat</h3>
+      <p class="footer-tagline">Software Developer • AI Enthusiast • Tech Innovator</p>
+      <p class="footer-location">Toronto, Ontario</p>
+      <div class="social-links">
+        <a href="https://github.com/bipinmahat1" target="_blank" class="social-link">GitHub</a>
+        <a href="https://linkedin.com/in/bipinmahat" target="_blank" class="social-link">LinkedIn</a>
+        <a href="mailto:bipinmahat643@gmail.com" class="social-link">Email</a>
+      </div>
+      <p class="copyright">© 2024&nbsp;Bipin&nbsp;Mahat. Coding the future, one project at a time.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

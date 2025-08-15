@@ -269,7 +269,7 @@
     window.addEventListener('pagehide', () => cancelAnimationFrame(rafId));
   }
 
-  const form = document.getElementById('contact-form');
+const form = document.getElementById('contact-form');
 const resp = document.getElementById('form-response');
 const TO = 'bipinmahat643@gmail.com';
 

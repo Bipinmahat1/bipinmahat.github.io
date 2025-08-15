@@ -3,12 +3,6 @@
 A personal portfolio website showcasing my projects, skills, and experience as a **Software Developer** and **AI Enthusiast**.  
 Built with **HTML**, **CSS**, and **JavaScript**, the site is designed to be modern, responsive, and user-friendly.
 
----
-
-## 📸 Preview
-![Website Screenshot](assets/images/about.jpg)  
-
----
 
 ## ✨ Features
 - **Responsive Design** – Works seamlessly on desktop, tablet, and mobile.
@@ -26,5 +20,3 @@ Built with **HTML**, **CSS**, and **JavaScript**, the site is designed to be mod
 - **Version Control:** Git & GitHub
 
 ---
-
-## 📂 Project Structure

@@ -314,5 +314,16 @@ if (menuToggle && mainNav) {
     mainNav.classList.toggle('open');
   });
 }
+if (navLinks.length) {
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.forEach((l) => l.classList.remove('active'));
+      link.classList.add('active');
+      if (mainNav && mainNav.classList.contains('open')) {
+        mainNav.classList.remove('open');
+      }
+    });
+  });
+}
 }
 })();
